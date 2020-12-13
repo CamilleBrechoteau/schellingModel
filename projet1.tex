@@ -1,0 +1,581 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Projet1},
+  pdfauthor={Camille BRECHOTEAU, Benjamin PERSON, Fanny MARTIN},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Projet1}
+\author{Camille BRECHOTEAU, Benjamin PERSON, Fanny MARTIN}
+\date{12/12/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{i--introduction}{%
+\subsection{I- INTRODUCTION}\label{i--introduction}}
+
+\begin{verbatim}
+      Dans le cadre de notre troisième année du cycle de Licence en biologie-informatique ou en biologie option bio-informatique (BI) à l’Université Evry Val-d ’Essonne, il nous est proposé un projet de groupe nous permettant de mettre en pratique nos connaissances en programmation R au travers d’un projet ayant pour finalité la reproduction du modèle de ségrégation spatiale proposée dans les années 1970 par Thomas C. Schelling  qui a marqué les esprits en raison de l’effet pervers qu’elle suggérait : il existerait un lien entre une ségrégation spatiale et le résultat collectif de décisions individuelles qui ne visent pas à une telle ségrégation. Ainsi que l’étude de la densité de population et que du seuil d’intolérance dans ce dernier.
+\end{verbatim}
+
+\hypertarget{ii-fonction-simu}{%
+\subsection{II-FONCTION SIMU}\label{ii-fonction-simu}}
+
+\hypertarget{a-one.simu-le-moduxe8le-de-schelling}{%
+\section{A-One.simu, le modèle de
+Schelling}\label{a-one.simu-le-moduxe8le-de-schelling}}
+
+On créer une fonction nommée ``one.simu'' qui permettra de réaliser les
+dynamiques des populations bleues et rougse selon le modèle de
+Schelling. Elle prend en paramètre un seuil (initaliser à 3), une taille
+de coté (longueur = larguer, initialisée à 50) ainsi que u (initialiser
+à 1 qui permet de faire varier la densité d'espaces vacants). On va
+créer une matrice carrée taille N*N avec trois différentes valeurs
+possibles, 0 pour les espaces vacants (dont la proportion changera selon
+la valeur de u), 1 pour les agents Bleus et 2 pour les agents Rouges.
+
+On a utilisé une boucle while et 2 condition d'arrêt, une qui donne un
+nombre d'itération maximal (on a choisi 1000) et l'autre qui stopera la
+boucle en cas d'impossibilité de continuer.
+
+A chaque itération : On commence par déterminer le nombre de voisins
+Bleus et le nombre de voisins Rouges pour toutes les cases de la
+matrice.
+
+On détermine ensuite les listes des agents insatisfaits (bleu,export1
+puis rouge, export2) et les listes des endroits vacant qui satisferai
+les bleu et rouges (import1 et import2).
+
+On vérifie la condition d'arrêt, ``stop'', si jamais l'une des 4 listes
+determinée précedement est vide il faut stopper la boucle while.
+
+Si la boucle peut continuer, on va sélectionner une position au hasard
+parmi les agents Bleus/Rouges insatisfaits ainsi qu'une case vacante
+parmi ``import1'' et ``import2''
+
+Enfin; on placera le Bleu insatisfait dans l'espace vacant qui lui
+permet d'être satisfait et on fera de même pour le Rouge. On
+implémentera i et la boucle recommencera.
+
+Une fois la boucle terminé on renvoie la matrice modifiée.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#APPLIQUE LE MODE DE Schelling}
+\NormalTok{one.simu<-}\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{seuil=}\DecValTok{3}\NormalTok{,}\DataTypeTok{N=}\DecValTok{50}\NormalTok{,}\DataTypeTok{u=}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{M <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{prob =} \KeywordTok{c}\NormalTok{(u,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{size =}\NormalTok{ N}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{nrow =}\NormalTok{ N)}
+
+\NormalTok{V<-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\NormalTok{N}
+\NormalTok{G <-}\StringTok{ }\KeywordTok{c}\NormalTok{(V[}\OperatorTok{-}\DecValTok{1}\NormalTok{],V[}\DecValTok{1}\NormalTok{])}
+\NormalTok{D <-}\StringTok{ }\KeywordTok{c}\NormalTok{(V[N],V[}\OperatorTok{-}\NormalTok{N])}
+
+\NormalTok{i<-}\DecValTok{1}
+\NormalTok{stop<-}\OtherTok{FALSE}
+
+\ControlFlowTok{while}\NormalTok{(i}\OperatorTok{<=}\DecValTok{1000} \OperatorTok{&}\StringTok{ }\NormalTok{stop}\OperatorTok{==}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{\{}
+
+\NormalTok{nb1 <-}\StringTok{ }\NormalTok{(M[D,] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[,D] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[,G] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[D,D] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,D] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M [D,G] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,G] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\NormalTok{nb2 <-}\StringTok{ }\NormalTok{(M[D,] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[,D] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[,G] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[D,D] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,D] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M [D,G] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,G] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\CommentTok{#nb1, nb2 = nombre de 1 et de 2 autour de chaque case}
+
+\CommentTok{#A DEPLACER}
+\NormalTok{export1 <-}\StringTok{ }\NormalTok{(nb1 }\OperatorTok{<}\StringTok{ }\NormalTok{seuil) }\OperatorTok{&}\StringTok{ }\NormalTok{(M }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\NormalTok{export2 <-}\StringTok{ }\NormalTok{(nb2 }\OperatorTok{<}\StringTok{ }\NormalTok{seuil) }\OperatorTok{&}\StringTok{ }\NormalTok{(M }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{export1}
+\NormalTok{export2}
+
+\CommentTok{#OU DEPLACER}
+\NormalTok{import1 <-}\StringTok{ }\NormalTok{(nb1 }\OperatorTok{>=}\StringTok{ }\NormalTok{seuil) }\OperatorTok{&}\StringTok{ }\NormalTok{(M }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\NormalTok{import2 <-}\StringTok{ }\NormalTok{(nb2 }\OperatorTok{>=}\StringTok{ }\NormalTok{seuil) }\OperatorTok{&}\StringTok{ }\NormalTok{(M }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\NormalTok{import1}
+\NormalTok{import2}
+
+
+\CommentTok{#CHOISIR UN AGENT INSATISFAIT}
+\KeywordTok{which}\NormalTok{(export1)}
+\KeywordTok{which}\NormalTok{(export2)}
+\ControlFlowTok{if}\NormalTok{( }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(export1))}\OperatorTok{==}\DecValTok{0} \OperatorTok{|}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(export2))}\OperatorTok{==}\DecValTok{0} \OperatorTok{|}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(import1))}\OperatorTok{==}\DecValTok{0} \OperatorTok{|}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(import2))}\OperatorTok{==}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  stop<-}\OtherTok{TRUE}
+\NormalTok{\}}
+  
+\ControlFlowTok{if}\NormalTok{(stop}\OperatorTok{==}\OtherTok{FALSE}\NormalTok{)\{}
+
+\NormalTok{agent1<-}\KeywordTok{sample}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{which}\NormalTok{(export1),}\DataTypeTok{size=}\DecValTok{1}\NormalTok{)}
+\NormalTok{agent2<-}\KeywordTok{sample}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{which}\NormalTok{(export2),}\DataTypeTok{size=}\DecValTok{1}\NormalTok{)}
+\NormalTok{agent1}
+\NormalTok{agent2}
+
+\CommentTok{#CHOSIR ESPACE VACANT SATISFAISANT}
+\CommentTok{#v1<-which(import1)}
+\CommentTok{#v2<-which(import2)}
+
+\NormalTok{vacant1<-}\KeywordTok{sample}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{which}\NormalTok{(import1),}\DataTypeTok{size=}\DecValTok{1}\NormalTok{)}
+\NormalTok{vacant2<-}\KeywordTok{sample}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{which}\NormalTok{(import2),}\DataTypeTok{size=}\DecValTok{1}\NormalTok{)}
+\NormalTok{vacant1}
+\NormalTok{vacant2}
+
+\CommentTok{#DEMENAGEMENT }
+\NormalTok{M[agent1]<-}\DecValTok{0}
+\NormalTok{M[vacant1]<-}\DecValTok{1}
+\NormalTok{M[agent2]<-}\DecValTok{0}
+\NormalTok{M[vacant2]<-}\DecValTok{2}
+\NormalTok{\}}
+\NormalTok{i<-i}\OperatorTok{+}\DecValTok{1}
+\NormalTok{\}}
+\NormalTok{M}
+\KeywordTok{return}\NormalTok{(M)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{b-two.simu-meusre-dagruxe9gation}{%
+\section{B-Two.simu, meusre
+d'agrégation}\label{b-two.simu-meusre-dagruxe9gation}}
+
+On va par la suite mesurer l'agrégation. On va créer une autre fonction
+qui prendra en paramètre une matrice M.Il existe plusieurs méthodes, on
+a choisi de calculer le N0 qui correspond au nombre d'agents entouré de
+8 agents de même type que lui (ex: un Bleu entouré de 8 Bleus).Pour
+cela, on recalcule ``nb1'' et ``nb2''.
+
+On utilise un accumulateur ``N0'' que l'on implémente quand on rencontre
+un agent entouré par 8 agents du même type en parcourant la matrice
+(grâce à la boucle for). La fonction retourne la valeur N0.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#MESURE AGREAGTION N0}
+\NormalTok{two.simu<-}\ControlFlowTok{function}\NormalTok{(M,}\DataTypeTok{N=}\DecValTok{50}\NormalTok{)\{}
+ 
+\NormalTok{V<-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\NormalTok{N}
+\NormalTok{G <-}\StringTok{ }\KeywordTok{c}\NormalTok{(V[}\OperatorTok{-}\DecValTok{1}\NormalTok{],V[}\DecValTok{1}\NormalTok{])}
+\NormalTok{D <-}\StringTok{ }\KeywordTok{c}\NormalTok{(V[N],V[}\OperatorTok{-}\NormalTok{N])}
+  
+  
+\NormalTok{nb1 <-}\StringTok{ }\NormalTok{(M[D,] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[,D] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[,G] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[D,D] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,D] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M [D,G] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,G] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\NormalTok{nb2 <-}\StringTok{ }\NormalTok{(M[D,] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[,D] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[,G] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[D,D] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,D] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M [D,G] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(M[G,G] }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\CommentTok{#nb1, nb2 = nombre de 1 et de 2 autour de chaque case}
+\NormalTok{nb1}
+\NormalTok{nb2}
+
+
+\NormalTok{N0<-}\DecValTok{0}
+\CommentTok{#parcour de la matrice, }
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(N}\OperatorTok{*}\NormalTok{N))\{}
+  
+  \ControlFlowTok{if}\NormalTok{ (M[j]}\OperatorTok{==}\DecValTok{1} \OperatorTok{&}\StringTok{ }\NormalTok{nb1[j]}\OperatorTok{==}\DecValTok{8}\NormalTok{)\{}
+\NormalTok{    N0<-N0}\OperatorTok{+}\DecValTok{1}
+    
+\NormalTok{  \}}
+  \ControlFlowTok{if}\NormalTok{ (M[j]}\OperatorTok{==}\DecValTok{2} \OperatorTok{&}\StringTok{ }\NormalTok{nb2[j]}\OperatorTok{==}\DecValTok{8}\NormalTok{ )\{}
+\NormalTok{    N0<-N0}\OperatorTok{+}\DecValTok{1}
+\NormalTok{  \}}
+
+\NormalTok{\}}
+
+
+\KeywordTok{return}\NormalTok{ (N0)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{iii--simulation}{%
+\subsection{III- SIMULATION}\label{iii--simulation}}
+
+On va maintenant utiliser les 2 fonctions afin d'observer et analyser
+les déplacements de populations en faisant varier 2 paramètres : le
+seuil d'intolérance et la densité d'espaces vacants.
+
+On va utiliser 3 seuils différents : 3,4 et 5. Au-delà de 5 les agents
+sont trop souvent insatisfait et en dessous de 3 quasiment toujours
+satisfait (selon l'article) Pour ce qui est de la densita, on va varier
+entre 2, 15 et 33\% d'espaces vacants.
+
+\hypertarget{a-ruxe9sultats}{%
+\section{A-Résultats}\label{a-ruxe9sultats}}
+
+Voici des matrices avec les différents seuils et densités :
+
+Seuil: 3, Densité: 2\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s3d02EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.04}\NormalTok{)}\CommentTok{#densité 2%}
+\KeywordTok{image}\NormalTok{(s3d02EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+Seuil: 3, Densité: 15\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s3d15EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.35}\NormalTok{)}\CommentTok{#densité 15%}
+\KeywordTok{image}\NormalTok{(s3d15EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+Seuil: 3, Densité: 33\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s3d33EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{1}\NormalTok{)}\CommentTok{#densité 33%}
+\KeywordTok{image}\NormalTok{(s3d33EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+Seuil: 4, Densité 2\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s4d02EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.04}\NormalTok{)}\CommentTok{#densité 2%}
+\KeywordTok{image}\NormalTok{(s4d02EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+Seuil: 4, Densité 15\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s4d15EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.35}\NormalTok{)}\CommentTok{#densité 15%}
+\KeywordTok{image}\NormalTok{(s4d15EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+Seuil: 4, Densité 33\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s4d33EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{1}\NormalTok{)}\CommentTok{#densité 33%}
+\KeywordTok{image}\NormalTok{(s4d33EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+Seuil: 5, Densité 2\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s5d02EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.04}\NormalTok{)}\CommentTok{#densité 2%}
+\KeywordTok{image}\NormalTok{(s5d02EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+Seuil: 5, Densité 15\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s5d15EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.35}\NormalTok{)}\CommentTok{#densité 15%}
+\KeywordTok{image}\NormalTok{(s5d15EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+Seuil: 5, Densité 2\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s5d33EX<-}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{1}\NormalTok{)}\CommentTok{#densité 33%}
+\KeywordTok{image}\NormalTok{(s5d33EX,}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"gray99"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-11-1.pdf} Afin
+pouvoir analyser l'effet du seuil et de la densité, on va recourir à
+``replicate''. On va exécuter 100x chaque combinaison de seuil et
+densité. On obtiendra des listes de N0 de tous les seuils et densités.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#simu avec seuil 3 et densité de 20 a 60%}
+\NormalTok{s3d02<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.04}\NormalTok{)))}
+\NormalTok{s3d15<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.35}\NormalTok{)))}
+\NormalTok{s3d33<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
+
+\CommentTok{#simu avec seuil 4 et densité de 20 a 60%}
+\NormalTok{s4d02<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.04}\NormalTok{)))}
+\NormalTok{s4d15<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.35}\NormalTok{)))}
+\NormalTok{s4d33<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
+
+
+\CommentTok{#simu avec seul 5 et densité de 20 a 60%}
+\NormalTok{s5d02<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.04}\NormalTok{)))}
+\NormalTok{s5d15<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{50}\NormalTok{,}\FloatTok{0.35}\NormalTok{)))}
+\NormalTok{s5d33<-}\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{,}\KeywordTok{two.simu}\NormalTok{(}\KeywordTok{one.simu}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+On va créer un data.frame. On va utiliser les moyennes des mesures
+d'agrégation obtenues (N0).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d<-}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{33}\NormalTok{)}
+\NormalTok{echelle<-}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{750}\NormalTok{,}\DecValTok{1500}\NormalTok{)}
+\NormalTok{x3<-}\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(s3d02),}\KeywordTok{mean}\NormalTok{(s3d15),}\KeywordTok{mean}\NormalTok{(s3d33))}
+\NormalTok{x4<-}\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(s4d02),}\KeywordTok{mean}\NormalTok{(s4d15),}\KeywordTok{mean}\NormalTok{(s4d33)) }
+\NormalTok{x5<-}\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(s5d02),}\KeywordTok{mean}\NormalTok{(s5d15),}\KeywordTok{mean}\NormalTok{(s5d33))}
+
+\NormalTok{d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2 15 33
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 620.42 234.82 130.06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1308.65 1039.02  809.17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  74.85 101.38  60.31
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{liste<-}\KeywordTok{list}\NormalTok{(d,x3,x4,x5,echelle)}
+\NormalTok{donnees<-}\KeywordTok{data.frame}\NormalTok{(liste)}
+\KeywordTok{colnames}\NormalTok{(donnees)<-}\KeywordTok{c}\NormalTok{(}\StringTok{"densité"}\NormalTok{,}\StringTok{"mesure agrégation seuil 3"}\NormalTok{, }\StringTok{"mesure agrégation seuil 4"}\NormalTok{,}\StringTok{"mesure agrégation seuil 5"}\NormalTok{,}\StringTok{"echelle"}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{summary}\NormalTok{(donnees))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     densité      mesure agrégation seuil 3 mesure agrégation seuil 4
+##  Min.   : 2.00   Min.   :130.1             Min.   : 809.2           
+##  1st Qu.: 8.50   1st Qu.:182.4             1st Qu.: 924.1           
+##  Median :15.00   Median :234.8             Median :1039.0           
+##  Mean   :16.67   Mean   :328.4             Mean   :1052.3           
+##  3rd Qu.:24.00   3rd Qu.:427.6             3rd Qu.:1173.8           
+##  Max.   :33.00   Max.   :620.4             Max.   :1308.7           
+##  mesure agrégation seuil 5    echelle    
+##  Min.   : 60.31            Min.   :   0  
+##  1st Qu.: 67.58            1st Qu.: 375  
+##  Median : 74.85            Median : 750  
+##  Mean   : 78.85            Mean   : 750  
+##  3rd Qu.: 88.11            3rd Qu.:1125  
+##  Max.   :101.38            Max.   :1500
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{donnees}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   densité mesure agrégation seuil 3 mesure agrégation seuil 4
+## 1       2                    620.42                   1308.65
+## 2      15                    234.82                   1039.02
+## 3      33                    130.06                    809.17
+##   mesure agrégation seuil 5 echelle
+## 1                     74.85       0
+## 2                    101.38     750
+## 3                     60.31    1500
+\end{verbatim}
+
+On réalise un graphe afin de pouvoir comparer toutes ces données :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(donnees}\OperatorTok{$}\NormalTok{densité,donnees}\OperatorTok{$}\NormalTok{echelle,}\DataTypeTok{type=}\StringTok{"b"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{7}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"densité d'espaces vacants en %"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"mesure d'agrégation(No)"}\NormalTok{,}\DataTypeTok{col=}\StringTok{"white"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(donnees}\OperatorTok{$}\NormalTok{densité,donnees}\OperatorTok{$}\StringTok{`}\DataTypeTok{mesure agrégation seuil 3}\StringTok{`}\NormalTok{,}\DataTypeTok{col=}\StringTok{"green"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{4}\NormalTok{,}\DataTypeTok{type=}\StringTok{"b"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(donnees}\OperatorTok{$}\NormalTok{densité,donnees}\OperatorTok{$}\StringTok{`}\DataTypeTok{mesure agrégation seuil 4}\StringTok{`}\NormalTok{,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{4}\NormalTok{,}\DataTypeTok{type=}\StringTok{"b"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(donnees}\OperatorTok{$}\NormalTok{densité,donnees}\OperatorTok{$}\StringTok{`}\DataTypeTok{mesure agrégation seuil 5}\StringTok{`}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{4}\NormalTok{,}\DataTypeTok{type=}\StringTok{"b"}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\FloatTok{28.3}\NormalTok{,}\DecValTok{1580}\NormalTok{, }\DataTypeTok{legend=}\KeywordTok{c}\NormalTok{(}\StringTok{"Seuil 3"}\NormalTok{, }\StringTok{"Seuil 4"}\NormalTok{,}\StringTok{"Seuil 5"}\NormalTok{), }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"green"}\NormalTok{, }\StringTok{"red"}\NormalTok{,}\StringTok{"blue"}\NormalTok{), }\DataTypeTok{lty=}\DecValTok{1}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{projet1_files/figure-latex/unnamed-chunk-16-1.pdf}
+SEUIL 3 : Le N0 diminue lorsque la DENSITE augmente: 620.96 pour 2\%,
+236.92 pour 15\% et 129.31 pour 33\%. SEUIL 4 : Le N0 diminue lorsque la
+DENSITE augmente : 1292.24 pour 2\%, 1046.18 pour 15\% et 95.25 pour
+33\%. SEUIL 5 : Le N0 varie peu lorsque que la DENSITE augmente : 73.96
+pour 2\%, 95.25 pour 15\% et 62.27 pour 33\%.
+
+Dans toutes les simulations le N0 est plus faible pour le SEUIL 5, un
+peu plus élevé pour le SEUIL 3 (même s'ils semblent se rapprocher du
+SEUIL 5 plus la DENSITE augmente). Le N0 du SEUIL 4 est quant à lui bien
+plus élevé que les autres.
+
+\hypertarget{b-interpruxe9tations}{%
+\section{B-Interprétations:}\label{b-interpruxe9tations}}
+
+On voit bien que la densité et le seuil de tolérance on tous deux un
+impact sur la ségrégation des populations différentes.
+
+En augmentant les espaces vides globalement le N0 diminue, il y a moins
+d'agents uniquement entourés d'agents du même type. Les agents ont moins
+de chances d'être entourés de ``trop'' d'agents de types différents.
+Mais il y a peu d'endroits où l'on retrouve assez d'agents du même type
+pour en être totalement entouré.
+
+Le seuil 5 est exigeant, il est compliqué de trouver des espaces vacants
+qui satisferont le seuil pour les agents insatisfait. Cela explique le
+faible N0. Peu d'agents auront 8 agents identiques autour d'eux. Il y a
+du mélange entre les populations, car de toutes façon il est très
+compliqué pour un agent de trouver un endroit qui lui conviendra. On
+observe de nombreux petits ``quartiers''.
+
+Le seuil 3 est peu exigeant, un agent ne demande ``moins'' de d'agents
+du même type. Il y a par conséquent plus d'espaces vacants qui
+conviendront aux agents insatisfait. Le mélange entre populations sera
+tout de même un peu présent. On observe de nombreux quartiers légèrement
+plus important que ceux du seuil 5.
+
+Le seuil 4 est celui qui donnera le plus de ``ségrégation'' des
+populations. Le seuil est assez élevé pour que les agents de types
+différents cherchent à ``s'éviter'' mais il n'est pas trop élevé et
+n'empêche pas de trouver des espaces vacants satisfaisant. On observe
+moins de quartier, mais des quartier de populations bien plus important.
+Il y a très peu de ``mélange''.
+
+\hypertarget{iv-conclusion}{%
+\subsection{IV CONCLUSION}\label{iv-conclusion}}
+
+Pour conclure, on voit qu'en suivant le modèle de Schelling les données
+changent selon le seuil et la densité, mais que dans tous les cas les
+agents semblables ont tendance à se rassembler dans des zones entre eux
+(``quartiers''). Les décisions individuelles de chacun des agents
+entrâine une ségrégation spatiale collective.
+
+On aurait aussi pu faire varier d'autres paramètres, telle que taille de
+la matrice, la disposition de départ des agents (ici, on a choisi de les
+disposer aléatoirement.) mais aussi les tailles des différentes
+populations (on aurait pu mettre une population en infériorité
+numérique.);
+
+\end{document}
