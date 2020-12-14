@@ -1,5 +1,12 @@
 # schellingModel
-Application of the Schelling's Model 
+Application of the Schelling's Model
+
+Il faut tout d'abord installer le package :
+
+```{r}
+#devtools::install_github("CamilleBrechoteau/schellingModel")
+library(schellingModel)
+```  
 
 ONE.SIMU
 
@@ -13,10 +20,7 @@ retourne :
 
   La matrice après l'éxécution du modèle de Schelling sur cette matrice.
   
-```{r}
-#devtools::install_github("vrunge/M2algorithmique")
-library(M2algorithmique)
-```  
+
   
  
 TWO.SIMU
