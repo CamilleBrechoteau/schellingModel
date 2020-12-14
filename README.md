@@ -13,6 +13,11 @@ retourne :
 
   La matrice après l'éxécution du modèle de Schelling sur cette matrice.
   
+```{r}
+#devtools::install_github("vrunge/M2algorithmique")
+library(M2algorithmique)
+```  
+  
  
 TWO.SIMU
 
