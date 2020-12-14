@@ -1,0 +1,343 @@
+---
+title: "Projet1"
+author: "Camille BRECHOTEAU, Benjamin PERSON, Fanny MARTIN"
+date: "12/12/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+# I- INTRODUCTION
+       
+C'est un modèle de ségrégation spatiale prposé dans les année 70 par Thomas C. Schelling.
+
+Il se prêtent aux "petites" villes.
+
+Suggère un effet pervers : un lien entre ségrégation spatiale et le résultat collectif de décision individuelles qui n'ont pas pour but une telles ségrégation.
+
+Met en jeu 2 populations différentes.
+
+2 paramètre vont être étudiés, la densité d'espace libre dans notre simulation de petite ville ainsi que le seuil de tolérance S. 
+
+Un individu (ou agent) d'un certain type sera insatsifait et souhaitera donc déménager si jamais il n'a pas au min S agents du même tye autour de lui sinon il sera satisfait.
+
+
+Pour cela on va donc créer 2 fonctions qui permettront de recréer le modèle de Schelling et de mesurer "l'agrégagtion" des populations. Enfin nous ferons différentes simulations en faisant varier les 2 paramètres (densité et seuil)
+
+
+# II-FONCTION SIMU
+
+##    A-One.simu, le modèle de Schelling
+
+Cette fonction à pour but de recréer le modèle de Schelling. 
+
+Elle permet de réaliser les dynamiques de populations selon ce modèle avec différents paramètres.
+
+On utilise une matrice de taille N*N pour simuler une ville et ses habitants. 
+
+Il est possible de faire varier 3 paramètres : seuil d'intolérence, densité et la taille N.
+
+On mettra en jeu 2 populations la Bleu (représenté par des 1) et la Rouge (par des 2). Les espaces vacant seront Blanc (par des 0)
+
+On a utilisé une boucle while et 2 condition d'arrêt, une qui donne un nombre d'itération maximal (on a choisi 1000) et l'autre qui stopera la boucle en cas d'impossibilité de continuer.
+
+A chaque itération : 
+On commence par déterminer le nombre de voisins Bleus et le nombre de voisins Rouges pour toutes les cases de la matrice.
+
+On détermine ensuite les listes des agents insatisfaits (bleu,export1 puis rouge, export2) et les listes des endroits vacant qui satisferai les bleu et rouges (import1 et import2)
+
+On vérifie la condition d'arrêt, "stop", si jamais il n y a soit plus de Bleus satisfait, soit plus de Rouges satsifait ou encore plus aucun espaces vacant disponibles pour les Bleus ou les Rouges, la boucle s'arrête, on met fin à la boucle. 
+
+Si la boucle peut continuer:
+
+On sélectionne un Bleu et un Rouge insatisfait.
+
+On sélectionne un espace vacant saitisfaiant pour ces 2 agents.
+
+Et on les fait "déménager".
+
+Une fois la boucle terminé on renvoie la matrice modifiée, la nouvelle configuration de la "ville".
+
+
+
+```{r}
+#APPLIQUE LE MODEL DE Schelling
+one.simu<-function(seuil=3,N=50,u=1){# par défault: seuil 3, matrice 50x50 et densité de 50%
+M <- matrix(sample(c(0,1,2), replace = TRUE, prob = c(u,1,1), size = N^2), nrow = N)
+
+V<- 1:N
+G <- c(V[-1],V[1])
+D <- c(V[N],V[-N])
+
+i<-1
+stop<-FALSE
+
+while(i<=1000 & stop==FALSE)
+{
+
+nb1 <- (M[D,] == 1) + (M[G,] == 1) + (M[,D] == 1) + (M[,G] == 1) + (M[D,D] == 1) + (M[G,D] == 1) + (M [D,G] == 1) + (M[G,G] == 1)
+nb2 <- (M[D,] == 2) + (M[G,] == 2) + (M[,D] == 2) + (M[,G] == 2) + (M[D,D] == 2) + (M[G,D] == 2) + (M [D,G] == 2) + (M[G,G] == 2)
+#nb1, nb2 = nombre de 1 et de 2 autour de chaque case
+
+#A DEPLACER
+export1 <- (nb1 < seuil) & (M == 1)
+export2 <- (nb2 < seuil) & (M == 2)
+export1
+export2
+
+#OU DEPLACER
+import1 <- (nb1 >= seuil) & (M == 0)
+import2 <- (nb2 >= seuil) & (M == 0)
+import1
+import2
+
+
+#POURSUITE POSSIBLE?
+if( length(which(export1))==0 | length(which(export2))==0 | length(which(import1))==0 | length(which(import2))==0){
+  stop<-TRUE #Non
+}
+  
+if(stop==FALSE){#Oui
+  
+#CHOISIR UN AGENT INSATISFAIT
+agent1<-sample(x=which(export1),size=1)
+agent2<-sample(x=which(export2),size=1)
+agent1
+agent2
+
+#CHOSIR ESPACE VACANT SATISFAISANT
+vacant1<-sample(x=which(import1),size=1)
+vacant2<-sample(x=which(import2),size=1)
+vacant1
+vacant2
+
+#DEMENAGEMENT 
+M[agent1]<-0
+M[vacant1]<-1
+M[agent2]<-0
+M[vacant2]<-2
+}
+i<-i+1
+}
+M
+return(M)
+}
+
+```
+
+##    B-Two.simu, meusre d'agrégation
+
+Cette fonction a pour but de mesurer l'agrégation. 
+
+Il existe plusieurs méthodes, on a choisi de calculer le N0 qui correspond au nombre d'agents entouré de 8 agents de même type que lui (ex: un Bleu entouré de 8 Bleus)
+
+On commence par déterminer le nombre de voisins Bleus et le nombre de voisins Rouges pour toutes les cases de la matrice (comme pour one.simu)
+  
+On initialise le N0 à 0 puis on vérifie chaques agents un par un et on ajoute 1 à N0 en cas d'agent entouré de 8 agents similiare.
+
+On retourne ensuite le N0 final.
+```{r}
+
+#MESURE AGREAGTION N0
+two.simu<-function(M,N=50){
+ 
+V<- 1:N
+G <- c(V[-1],V[1])
+D <- c(V[N],V[-N])
+  
+  
+nb1 <- (M[D,] == 1) + (M[G,] == 1) + (M[,D] == 1) + (M[,G] == 1) + (M[D,D] == 1) + (M[G,D] == 1) + (M [D,G] == 1) + (M[G,G] == 1)
+nb2 <- (M[D,] == 2) + (M[G,] == 2) + (M[,D] == 2) + (M[,G] == 2) + (M[D,D] == 2) + (M[G,D] == 2) + (M [D,G] == 2) + (M[G,G] == 2)
+#nb1, nb2 = nombre de 1 et de 2 autour de chaque case
+nb1
+nb2
+
+N0<-0# N0 qui sert a mesurer agrégation
+
+#parcour de la matrice 
+for(j in 1:(N*N)){
+  
+  if (M[j]==1 & nb1[j]==8){
+    N0<-N0+1
+    
+  }
+  if (M[j]==2 & nb2[j]==8 ){
+    N0<-N0+1
+  }
+
+}
+
+
+return (N0)
+}
+
+```
+
+# III- SIMULATION
+
+On utilise les 2 fonctions afin d'observer et analyser les déplacements de populations en faisant varier 2 paramètres : le seuil d'intolérance et la densité d'espaces vacants.
+
+3 seuils : 3,4 et 5. Au-delà de 5 les agents sont trop souvent insatisfait et en dessous de 3 quasiment toujours satisfait (selon l'article)
+
+3 densités : 2, 15 et 33% d'espaces vacants.
+
+##    A-Résultats
+
+Voici des matrices avec les différents seuils et densités :
+
+Seuil: 3, Densité: 2%
+```{r}
+s3d02EX<-one.simu(3,50,0.04)#densité 2%
+image(s3d02EX,col=c("gray99","darkblue","darkred"))
+```
+
+Seuil: 3, Densité: 15%
+```{r}
+s3d15EX<-one.simu(3,50,0.35)#densité 15%
+image(s3d15EX,col=c("gray99","darkblue","darkred"))
+```
+
+Seuil: 3, Densité: 33%
+```{r}
+s3d33EX<-one.simu(3,50,1)#densité 33%
+image(s3d33EX,col=c("gray99","darkblue","darkred"))
+```
+
+Seuil: 4, Densité 2%
+```{r}
+s4d02EX<-one.simu(4,50,0.04)#densité 2%
+image(s4d02EX,col=c("gray99","darkblue","darkred"))
+```
+
+Seuil: 4, Densité 15%
+```{r}
+s4d15EX<-one.simu(4,50,0.35)#densité 15%
+image(s4d15EX,col=c("gray99","darkblue","darkred"))
+```
+
+Seuil: 4, Densité 33%
+```{r}
+s4d33EX<-one.simu(4,50,1)#densité 33%
+image(s4d33EX,col=c("gray99","darkblue","darkred"))
+```
+
+Seuil: 5, Densité 2%
+```{r}
+s5d02EX<-one.simu(5,50,0.04)#densité 2%
+image(s5d02EX,col=c("gray99","darkblue","darkred"))
+```
+
+Seuil: 5, Densité 15%
+```{r}
+s5d15EX<-one.simu(5,50,0.35)#densité 15%
+image(s5d15EX,col=c("gray99","darkblue","darkred"))
+```
+
+Seuil: 5, Densité 2%
+```{r}
+s5d33EX<-one.simu(5,50,1)#densité 33%
+image(s5d33EX,col=c("gray99","darkblue","darkred"))
+```
+
+Afin pouvoir analyser l'effet du seuil et de la densité, on va recourir à "replicate". On va exécuter 100x chaque combinaison de seuil et densité. On obtiendra des listes de N0 de tous les seuils et densités.
+
+```{r}
+#simu avec seuil 3 et densité de 20 a 60%
+s3d02<-replicate(100,two.simu(one.simu(3,50,0.04)))
+s3d15<-replicate(100,two.simu(one.simu(3,50,0.35)))
+s3d33<-replicate(100,two.simu(one.simu(3,50,1)))
+
+#simu avec seuil 4 et densité de 20 a 60%
+s4d02<-replicate(100,two.simu(one.simu(4,50,0.04)))
+s4d15<-replicate(100,two.simu(one.simu(4,50,0.35)))
+s4d33<-replicate(100,two.simu(one.simu(4,50,1)))
+
+
+#simu avec seul 5 et densité de 20 a 60%
+s5d02<-replicate(100,two.simu(one.simu(5,50,0.04)))
+s5d15<-replicate(100,two.simu(one.simu(5,50,0.35)))
+s5d33<-replicate(100,two.simu(one.simu(5,50,1)))
+
+```
+
+On va créer un data.frame. On va utiliser les moyennes des mesures d'agrégation obtenues (N0).
+
+```{r}
+
+d<-c(2,15,33)# différentes densité
+echelle<-c(0,750,1500)#servira pour la taille du plot
+x3<-c(mean(s3d02),mean(s3d15),mean(s3d33)) #liste des moyennes des seuil 3 et des différentes densités
+x4<-c(mean(s4d02),mean(s4d15),mean(s4d33)) #liste des moyennes des seuil 4 et des différentes densités
+x5<-c(mean(s5d02),mean(s5d15),mean(s5d33)) #liste des moyennes des seuil 5 et des différentes densités
+
+d
+x3
+x4
+x5
+```
+
+```{r}
+liste<-list(d,x3,x4,x5,echelle)
+donnees<-data.frame(liste)
+colnames(donnees)<-c("densité","mesure agrégation seuil 3", "mesure agrégation seuil 4","mesure agrégation seuil 5","echelle")
+print(summary(donnees))
+
+```
+
+```{r}
+donnees
+```
+
+
+On réalise un graphe afin de pouvoir comparer toutes ces données :
+```{r}
+plot(donnees$densité,donnees$echelle,type="b",lwd=7,xlab="densité d'espaces vacants en %",ylab="mesure d'agrégation(No)",col="white")
+lines(donnees$densité,donnees$`mesure agrégation seuil 3`,col="green",lwd=4,type="b")
+lines(donnees$densité,donnees$`mesure agrégation seuil 4`,col="red",lwd=4,type="b")
+lines(donnees$densité,donnees$`mesure agrégation seuil 5`,col="blue",lwd=4,type="b")
+legend(20,1580, legend=c("Seuil 3", "Seuil 4","Seuil 5"), col=c("green", "red","blue"), lty=1,lwd=4)
+
+
+```
+
+SEUIL 3 : Le N0 diminue lorsque la DENSITE augmente: 620.96 pour 2%, 236.92 pour 15% et 129.31 pour 33%.
+
+SEUIL 4 : Le N0 diminue lorsque la DENSITE augmente : 1292.24	 pour 2%, 1046.18 pour 15% et 95.25 pour 33%.
+
+SEUIL 5 : Le N0 varie peu lorsque que la DENSITE augmente : 73.96	 pour 2%, 95.25	pour 15% et 62.27 pour 33%.
+
+Dans toutes les simulations le N0 est plus faible pour le SEUIL 5, un peu plus élevé pour le SEUIL 3 (même s'ils semblent se rapprocher du SEUIL 5 plus la DENSITE augmente). Le N0 du SEUIL 4 est quant à lui bien plus élevé que les autres.
+
+##    B-Interprétations:
+
+On voit bien que la densité et le seuil de tolérance on tous deux un impact sur la ségrégation des populations différentes. 
+
+En augmentant les espaces vides globalement le N0 diminue, il y a moins d'agents uniquement entourés d'agents du même type.
+
+Le seuil 5 est exigeant, il est compliqué de trouver des espaces vacants qui satisferont le seuil pour les agents insatisfait. Cela explique le faible N0. 
+Il y a finalement peu de mouvement et donc peu d'agents auront 8 agents identiques autour d'eux. Il y a encore un peu de mélange entre les populations, car de toutes façon il est très compliqué pour un agent de trouver un endroit qui lui conviendra. 
+On observe de nombreux petits "quartiers".
+
+Le seuil 3 est peu exigeant, un agent ne demande "moins" de d'agents du même type. Il y a par conséquent plus d'espaces vacants qui conviendront aux agents insatisfait. Le mélange entre populations sera tout de même un peu présent. 
+On observe de nombreux quartiers légèrement plus important que ceux du seuil 5.
+
+Le seuil 4 est celui qui donnera le plus de "ségrégation" des populations. Le seuil est assez élevé pour que les agents de types différents cherchent à "s'éviter" mais il n'est pas trop élevé et n'empêche pas de trouver des espaces vacants satisfaisant. 
+On observe moins de quartier, mais des quartier de populations bien plus important. Il y a très peu de "mélange".
+
+
+# IV CONCLUSION
+
+  Pour conclure, on voit qu'en suivant le modèle de Schelling les données changent selon le seuil et la densité, mais que dans tous les cas les agents semblables ont tendance à se rassembler dans des zones entre eux ("quartiers"). Les décisions individuelles de chacun des agents entrâine une ségrégation spatiale collective.
+  
+La densité et le seuil on un réel impact sur le modèle de Schelling.
+
+Comme attendue: il y a une ségrégation plus ou moins importantes selon les paramètres.
+Des "quariters" de populations sembablent se forment Les multiples décisions individuelles entraînent une ségrégation spatialle collective.
+  
+D'autres paramètre aurai pu être étudier :
+la taille de la ville, 
+la disposition de départ des agents (aléatoire dans notre cas), 
+avoir des populations de tailles différents, 
+faire entrer en jeu plus de 2 populations.
+
+D'autres mesures d'agrégation existe également et pourrai affiner et compléter notre travail.
+
